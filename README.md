@@ -1,14 +1,12 @@
-# Real-time Transaction Challenge
+# Real-time Transaction Services
 
 ## Overview
 
-Welcome to Current's take-home technical assessment for backend engineers! We appreciate you taking the time to complete this, and we're excited to see what you come up with.
-
-Today, you will be building a small but critical component of Current's core banking enging: real-time balance calculation through [event-sourcing](https://martinfowler.com/eaaDev/EventSourcing.html).
+I have built a core banking engine: real-time balance calculation through [event-sourcing](https://martinfowler.com/eaaDev/EventSourcing.html).
 
 ## Schema
 
-The [included service.yml](service.yml) is the OpenAPI 3.0 schema to a service we would like you to create and host.
+The [included service.yml](service.yml) is the OpenAPI 3.0 schema to the service I have built. 
 
 ## Details
 
@@ -18,23 +16,9 @@ The service accepts two types of transactions:
 
 2. Authorizations: Conditionally remove money from a user (debit)
 
-Every load or authorization PUT should return the updated balance following the transaction. Authorization declines should be saved, even if they do not impact balance calculation.
+Every load or authorization PUT returns the updated balance following the transaction. Authorization declines are saved, even if they do not impact balance calculation.
 
-You may use any technologies to support the service. We do not expect you to use a persistent store (you can you in-memory object), but you can if you want. We should be able to bootstrap your project locally to test.
-
-## Expectations
-
-We are looking for attention in the following areas:
-
-1. Do you accept all requests supported by the schema, in the format described?
-
-2. Do your responses conform to the prescribed schema?
-
-3. Does the authorizations endpoint work as documented in the schema?
-
-4. Do you have unit and integrations test on the functionality?
-
-# Candidate README
+## Directory Structure
 
 ```
 ├── src/
@@ -76,11 +60,6 @@ To run this server locally, follow these steps:
 6. Alternatively, the appliocation can also be run using the `.jar` file: `java -jar ./target/CodeScreen_ikfrumbg-1.0.0.jar`
 
 ## Design considerations
-
-I decided to build this application as a RESTful API using Spring Boot for the following reasons:
-
-- Spring Boot provides a lightweight and easy-to-use framework for building Java-based web applications.
-- Using Spring Boot allows for rapid development and easy integration with other Spring modules and libraries.
 
 ### Event Sourcing
 
@@ -147,7 +126,7 @@ We employ various types of tests to ensure the correctness and robustness of the
 
 - **Integration Tests**: Integration tests verify the interaction between different components of the application, including controllers, service layers, and data access layers. Our `TransactionServiceApplicationTests` class performs integration testing by using Spring's `MockMvc` to simulate HTTP requests and verify responses.
 
-- **Endpoint Testing**: These tests specifically target the API endpoints to ensure that they return the expected responses for various scenarios. For instance, in the `TransactionServiceApplicationTests`, we test the `/load` and `/authorization` endpoints to validate their behavior under different conditions.
+- **Endpoint Testing**: These tests specifically target the API endpoints to ensure they return the expected responses for various scenarios. For instance, in the `TransactionServiceApplicationTests`, we test the `/load` and `/authorization` endpoints to validate their behavior under different conditions.
 
 We primarily utilize the following libraries for testing:
 
@@ -162,26 +141,3 @@ We primarily utilize the following libraries for testing:
 If I were to deploy this application, I would consider using Docker for containerization and Kubernetes for orchestration. This would allow for easy scalability and management of the application in a cloud environment. Additionally, I would deploy the application to a cloud provider such as AWS or Google Cloud Platform for reliability and scalability.
 
 For the database, I would choose to use a relational database like PostgreSQL or MySQL. These databases offer ACID compliance, strong data integrity, and scalability, which are essential for storing transactional data securely and reliably. Additionally, they are well-supported and have mature ecosystems with tools for backup, monitoring, and management, making them suitable choices for a production environment.
-
-## ASCII art
-
-```
-
-_________  ____ __________________________________ __________________
-\_   ___ \|    |   \______   \______   \_   _____/ \      \__    ___/
-/    \  \/|    |   /|       _/|       _/|    __)_  /   |   \|    |
-\     \___|    |  / |    |   \|    |   \|        \/    |    \    |
- \______  /______/  |____|_  /|____|_  /_______  /\____|__  /____|
-        \/                 \/        \/        \/         \/
-
-```
-
-## License
-
-At CodeScreen, we strongly value the integrity and privacy of our assessments. As a result, this repository is under exclusive copyright, which means you **do not** have permission to share your solution to this test publicly (i.e., inside a public GitHub/GitLab repo, on Reddit, etc.). <br>
-
-## Submitting your solution
-
-Please push your changes to the `main branch` of this repository. You can push one or more commits. <br>
-
-Once you are finished with the task, please click the `Submit Solution` link on <a href="https://app.codescreen.com/candidate/d00bd44e-8404-44c9-8bd6-15ba7a3baec6" target="_blank">this screen</a>.
